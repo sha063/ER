@@ -1,54 +1,47 @@
 {% load static %}
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"></h5>
-      <!-- Slides with captions -->
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          {% for i in dict %}
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i.nu}}" class="{{i.stat}}"
-            {i.ac} aria-label="Slide {{i.n}}"></button>
-          {% endfor %}
-        </div>
-        <div class="carousel-inner">
-          {% for i in dict %}l
-          <div class="carousel-item {{i.stat}} carousel-height">
-            <img src="{% static i.loc %}" class="d-block w-100 h-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
-          </div>
-          {% endfor %}
-          {% for i in list %}
-          <button class="carousel-control-{{i}}" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="{{i}}">
-            <span class="carousel-control-{{i}}-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">{{i}}</span>
-          </button>
-          {% endfor %}
-        </div><!-- End Slides with captions -->
+<!-- Slides with captions -->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {% for i in dict %}
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i.nu}}" class="{{i.stat}}"
+      {i.ac} aria-label="Slide {{i.n}}"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    {% for i in dict %}l
+    <div class="carousel-item {{i.stat}} carousel-height">
+      <img src="{% static i.loc %}" class="d-block w-100 h-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
-  </div>
+    {% endfor %}
+    {% for i in list %}
+    <button class="carousel-control-{{i}}" type="button" data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="{{i}}">
+      <span class="carousel-control-{{i}}-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{i}}</span>
+    </button>
+    {% endfor %}
+  </div><!-- End Slides with captions -->
 </div>
 <style>
-  @media (0px <= width <= 425px){
-    .carousel-height{
-      height:150px;
-    }
-  }
-  @media (426px <= width <= 768px){
-    .carousel-height{
-      height:400px;
-    }
-  }
-  @media (769px <= width <= 1900px){
-    .carousel-height{
-      height:400px;
+  @media (0px <=width <=425px) {
+    .carousel-height {
+      height: 150px;
     }
   }
 
+  @media (426px <=width <=768px) {
+    .carousel-height {
+      height: 400px;
+    }
+  }
 
+  @media (769px <=width <=1900px) {
+    .carousel-height {
+      height: 400px;
+    }
+  }
 </style>

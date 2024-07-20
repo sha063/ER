@@ -1,0 +1,22 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    {% for i in alist %}
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#{{i.name}}" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-{{i.icon}}"></i>
+        <span>{{i.name}}</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="{{i.name}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        {% for j in i.list  %} 
+        <li>
+          <a href="/{{j.link}}">
+            <i class="bi bi-circle"></i><span>{{j.name}}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li><!-- End Components Nav -->
+    {% endfor %}
+  </ul>
+</aside><!-- End Sidebar-->

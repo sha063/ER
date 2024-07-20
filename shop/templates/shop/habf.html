@@ -1,0 +1,47 @@
+{% extends "./../index.html" %}
+{% block block %}
+{% include './layouts/components/header.html' %}
+{% include './layouts/components/aside.html' %}
+
+{% if idn.home %}
+{% include "./layouts/main.html" %}
+{% endif%}
+{% if idn.profile %}
+{% include "./layouts/profile.html" %}
+{% endif%}
+{% if idn.about %}
+{% include "./layouts/about.html" %}
+{% endif%}
+{% if idn.pages_faq %}
+{% include "./layouts/pages_faq.html" %}
+{% endif%}
+
+{% if idn.post_add %}
+{% include "./layouts/post/post_add.html" %}
+{% endif%}
+{% if idn.post_review %}
+{% include "./layouts/post/post_review.html" %}
+{% endif%}
+{% if idn.post_details %}
+{% include "./layouts/post/post_detail.html" %}
+{% endif%}
+{% if idn.post_edit %}
+{% include "./layouts/post/post_edit.html" %}
+{% endif%}
+{% if idn.comment_edit %}
+{% include "./layouts/comment/comment_edit.html" %}
+{% endif%}
+
+{% if idn.file_list %}
+{% include "./layouts/file&folder/file_list.html" %}
+{% endif%}
+{% if idn.create_folder %}
+{% include "./layouts/file&folder/create_folder.html" %}
+{% endif%}
+
+{% if idn.ocr %}
+{% include "./layouts/ocr/ocr.html" %}
+{% endif%}
+
+
+{% endblock block %}

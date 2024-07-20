@@ -1,0 +1,57 @@
+<div id="main" class="main">
+  {% include "../components/pagetitle.html" %}
+  <div class="bg-white p-2 mt-4 col-md-8">
+    <div class="d-flex flex-column justify-content-start ml-2">
+      <span class="d-block font-weight-bold name">{{post.author}}</span>
+      <span class="date text-black-50">{{post.created_at}}</span>
+    </div>
+    <div class="mt-2">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.content|safe }}</p>
+      {% if request.user == post.author or request.user.is_superuser %}
+      <form method="post" action="{% url 'delete_post' post.pk %}" style="margin-top: 10px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'Home' %}" class="btn btn-info btn-block">Cancel</a>
+        <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">Edit</a>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  <div class="bg-white p-2 mt-4 col-md-8">
+    <div class="d-flex flex-column justify-content-start ml-2">
+      <h2>Comments</h2>
+      <ul class="list-group mb-4">
+        {% for comment in comments %}
+        <li class="list-group-item">
+          <strong>{{ comment.author }}</strong>:
+          <br>{{ comment.content|safe }}
+          {% if request.user == comment.author or request.user.is_staff %}
+        <li class="list-group-item">
+          <form method="post" action="{% url 'delete_comment' comment.pk %}">
+            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-primary btn-sm">Edit</a>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </li>
+        {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="bg-white p-2 mt-4 col-md-8">
+    <div class="d-flex flex-column justify-content-start ml-2">
+      {{ comment_form.media }}
+      <form method="post">
+        <div class="d-flex flex-row align-items-start">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+        </div>
+        <div class="mt-2 text-right">
+          <button class="btn btn-primary btn-sm shadow-none" type="submit">Post Comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latest News</title>
+</head>
+<body>
+    <h1>Latest News</h1>
+    <form method="get" action="{% url 'fetch_news' %}">
+        <input type="text" name="keyword" placeholder="Enter keyword" value="{{ keyword }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for article in news_articles %}
+            <li>
+                <strong>{{ article.source.name }}:</strong>
+                <span>{{ article.publishedAt }}</span><br>
+                <a href="{{ article.url }}" target="_blank">{{ article.title }}</a><br>
+                <p>{{ article.description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

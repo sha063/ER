@@ -1,0 +1,40 @@
+{% load static %}
+<main id="main" class="main">
+  {% include "./components/pagetitle.html" %}
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="card">
+          <div
+            class="card-body profile-card pt-4 d-flex flex-column align-items-center"
+          >
+            <h2>{{user.username}}</h2>
+          </div>
+        </div>
+      </div>
+      <section class="section profile">
+        <table class="table card-body shadow-sm">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+            <tr>
+              <td>{{ post.title }}</td>
+              <td>{{ post.approved|yesno:"Approved,Not Approved" }}</td>
+              <td>
+                <a href="{% url 'edit_post' post.pk %}">Edit</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </section>
+</main>
+<!-- End #main -->

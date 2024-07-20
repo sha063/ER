@@ -1,0 +1,68 @@
+<style>
+    /* Adjust styling as needed */
+    .dropzone {
+      border: 2px dashed #007bff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .file-preview {
+      margin-top: 10px;
+    }
+  </style>
+  
+  <div id="main" class="main">
+    <h1>OCR Text Content</h1>
+    <form method="post" enctype="multipart/form-data" class="form">
+      {% csrf_token %}
+      <div id="dropzone" class="dropzone">
+        <input
+          name="file"
+          type="file"
+          id="fileInput"
+          multiple
+          onchange="handleFileSelect(event)"
+          style="display: none"
+        />
+        <label for="fileInput" class="btn btn-primary">
+          Select File
+        </label>
+      </div>
+      <div id="fileList" class="file-preview">
+        <p><strong>Selected Files:</strong></p>
+        <ul id="selectedFiles"></ul>
+      </div>
+      <button class="btn btn-primary" type="submit">Upload File</button>
+    </form>
+    <div class="txt-content bg-white mt-3 ml-3">
+      <pre>{{ content }}</pre>
+    </div>
+    <button onclick="copyToClipboard()" id="cpy">Copy Text</button>
+  </div>
+  
+  <script>
+    function handleFileSelect(event) {
+      const files = event.target.files;
+      const fileList = document.getElementById("selectedFiles");
+      fileList.innerHTML = "";
+      for (let i = 0; i < files.length; i++) {
+        const listItem = document.createElement("li");
+        listItem.textContent = files[i].name;
+        fileList.appendChild(listItem);
+      }
+    }
+  
+    function copyToClipboard() {
+      const content = document.querySelector(".txt-content pre").innerText;
+      navigator.clipboard
+        .writeText(content)
+        .then(() => {
+          document.getElementById("cpy").innerText = "Copied";
+        })
+        .catch((err) => {
+          alert("Failed to copy text: " + err);
+        });
+    }
+  </script>
+  

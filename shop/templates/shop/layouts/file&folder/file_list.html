@@ -1,0 +1,36 @@
+{% block block %}
+<div id="main" class="main">
+    {% include "../components/pagetitle.html" %}
+    <div class="mb-3">
+        {% if current_folder %}
+        <a href="{% if parent_folder %}{% url 'file_list' parent_folder.id %}{% else %}{% url 'file_list' %}{% endif %}"
+            class="btn btn-secondary">Go Up</a>
+        {% endif %}
+        {% if is_superuser %}
+        <a href="{% if current_folder %}{% url 'upload_file' current_folder.id %}{% else %}{% url 'upload_file' %}{% endif %}"
+            class="btn btn-primary">Upload File</a>
+        <a href="{% if current_folder %}{% url 'create_folder' current_folder.id %}{% else %}{% url 'create_folder' %}{% endif %}"
+            class="btn btn-secondary">Create Folder</a>
+        {% endif %}
+    </div>
+    <b>{{ current_path }}</b>
+    <div class="list-group">
+        {% for folder in folders %}
+        <div class="list-group-item">
+            <a href="{% url 'file_list' folder.id %}"><strong>{{ folder.name }}</strong></a>
+            {% if is_superuser %}
+            <a href="{% url 'delete_folder' folder.id %}" class="btn btn-danger btn-sm float-end ms-2">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% for file in files %}
+        <div class="list-group-item">
+            <a href="{% url 'download_file' file.id %}">{{ file.file.name }}</a>
+            {% if is_superuser %}
+            <a href="{% url 'delete_file' file.id %}" class="btn btn-danger btn-sm float-end ms-2">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock block %}

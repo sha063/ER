@@ -1,6 +1,35 @@
 {
   "cSpell.words": [
+    "aligncenter",
+    "alignjustify",
+    "alignleft",
+    "alignright",
+    "alist",
+    "autoresize",
+    "backcolor",
+    "bullist",
+    "charmap",
+    "codesample",
+    "contextmenu",
+    "csrfmiddlewaretoken",
     "djangodj",
-    "pythonanywhere"
+    "fontselect",
+    "fontsizeselect",
+    "forecolor",
+    "fullscreen",
+    "habf",
+    "importcss",
+    "nonbreaking",
+    "numlist",
+    "pagebreak",
+    "pagetitle",
+    "pytesseract",
+    "pythonanywhere",
+    "quickbars",
+    "searchreplace",
+    "textcolor",
+    "tinymce",
+    "visualblocks",
+    "visualchars"
   ]
 }

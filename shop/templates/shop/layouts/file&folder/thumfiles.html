@@ -1,0 +1,28 @@
+{% load static %}
+<div class="p-0 mt-3">
+  {% for file in files %} {% if file.thumbnail %}
+  <a href="{{ file.file.url }}" target="_blank" class="thumbnail shadow">
+    <img src="{{ file.thumbnail.url }}" alt="{{ file.file.name }}" />
+  </a>
+  {% else %}
+  <a href="{{ file.file.url }}" target="_blank">
+    <img
+      src="{% static 'assets/placeholder.png' %}"
+      alt="{{ file.file.name }}"
+    />
+  </a>
+  {% endif %} {% endfor %}
+  <style>
+    .thumbnail {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      margin: 10px;
+    }
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</div>

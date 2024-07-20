@@ -1,15 +1,19 @@
 {% load static %}
-<main id="main" class="main">
+<main id="main" class="main p-2">
   {% include "./components/pagetitle.html" %}
   <section class="section dashboard">
-      {% include "./components/carousel.html" %}
-      {% include "./components/parts.html" %}
-      {% include "./components/table.html" %}
-      <div class="col-lg-8"><!-- Left side columns -->
-        <div id="table" class="row">
-        </div>
-      </div><!-- End Left side columns -->
-      <div class="col-lg-4"><!-- Right side columns -->
-      </div><!-- End Right side columns -->
+    {% include "./components/carousel.html" %} 
+    {% include "../layouts/post/post_list.html" %}
+    {% include "./file&folder/thumfiles.html" %}
+    {% include "./small/quote.html" %}
+    <div class="col-lg-8">
+      <!-- Left side columns -->
+      <div id="table" class="row"></div>
+    </div>
+    <!-- End Left side columns -->
+    <div class="col-lg-4"><!-- Right side columns --></div>
+    <!-- End Right side columns -->
   </section>
-</main><!-- End #main -->
+  {% block con %}{% endblock con %}
+</main>
+<!-- End #main -->

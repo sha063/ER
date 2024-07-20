@@ -1,0 +1,49 @@
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+{% endif %}
+<br>
+{% if user.is_authenticated %}
+<a href="{% url 'add_blog_post' %}" class="btn btn-success btn-block">Add Blog Post</a>
+{% if user.is_superuser %}
+<a href="{% url 'review_posts' %}" class="btn btn-info btn-block">Review Posts</a>
+{% endif %}
+{% endif %}
+{% for post in posts %}
+<div class="bg-white p-2 mt-4 col-md-8">
+  <div class="d-flex flex-column justify-content-start ml-2">
+    <span class="d-block font-weight-bold name">{{post.author}}</span>
+    <span class="date text-black-50">{{post.created_at}}</span>
+  </div>
+  <div class="mt-2">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.content|safe }}</p>
+    <a class="like-button" data-post-id="{{ post.id }}" href="#"><i class="bi-hand-thumbs-up"></i></a>
+    <span id="like-count-{{ post.id }}">{{ post.total_likes }}</span>&nbsp;&nbsp;
+    <a href="{% url 'blog_detail' post.pk %}"><i class="bi-chat"></i></a>
+  </div>
+</div>
+{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.like-button').click(function (e) {
+      e.preventDefault();
+      var postId = $(this).data('post-id');
+      $.ajax({
+        type: 'POST',
+        url: '{% url "ajax_like_post" 0 %}'.replace('0', postId),
+        data: {
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function (response) {
+          $('#like-count-' + postId).text(response.total_likes);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,48 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <script>
+      const alist = [
+        {
+          name: 'Dashboard',
+          icon: 'menu-button-wide',
+          list: [
+            { name: 'Home', link: 'Home' },
+            { name: 'About', link: 'About' },
+            { name: 'Pages FAQ', link: 'PagesFaq' },
+            { name: 'Resources', link: 'File' }
+          ]
+        },
+        {
+          name: 'Home',
+          icon: 'house',
+          list: [
+            { name: 'Blogs', link: '#blog' }
+          ]
+        },
+      ];
+
+      for (let i = 0; i < alist.length; i++) {
+        document.write(
+          `<li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#` + alist[i].name + `" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-` + alist[i].icon + `"></i>
+              <span>` + alist[i].name + `</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="` + alist[i].name + `" class="nav-content collapse " data-bs-parent="#sidebar-nav">`
+        );
+        for (let j = 0; j < alist[i].list.length; j++) {
+          document.write(
+            `<li>
+              <a href="` + alist[i].list[j].link + `">
+                <i class="bi bi-circle"></i>
+                <span>` + alist[i].list[j].name + `</span>
+              </a>
+            </li>`
+          );
+        }
+        document.write(`</ul></li>`);
+      }
+    </script>
+  </ul>
+</aside><!-- End Sidebar-->

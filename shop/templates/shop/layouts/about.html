@@ -1,0 +1,26 @@
+<main id="main" class="main"> 
+  <section class="section contact">
+    <div class="row gy-4">
+      <div class="col-xl-6">
+        <div class="row">
+          {% include "./components/pagetitle.html" %}
+          {% for i in list %}
+          <div class="col-lg-6">
+            <div class="info-box card">
+              <i class="bi bi-{{i.icon}}"></i>
+              <h3>{{i.field}}</h3>
+              <p>{{i.subject1}}<br>{{i.subject2}}</p>
+            </div>
+          </div>
+          {% endfor %}
+            <div class="col-lg-6">
+              <div class="info-box card">
+                <i class="bi bi-{{i.icon}}"></i>
+                <h3>Email Us</h3>
+                <p><a href="mailto:eg19063@seu.ac.lk">eg19063@seu.ac.lk</a><br><a href="mailto:shihabaaqil22242224@gmail.com">shihabaaqil22242224@gmail.com</a></p>
+              </div>
+            </div>
+        </div>
+      </div>
+  </section>
+</main>

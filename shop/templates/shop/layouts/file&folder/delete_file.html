@@ -1,0 +1,12 @@
+{% extends '../index.html' %}
+{% block content %}
+{% for file in files %}
+    <div class="list-group-item">
+        <a href="{% url 'download_file' file.id %}">{{ file.file.name }}</a>
+        {% if file.id %}
+            <a href="{% url 'delete_file' file.id %}" class="btn btn-danger btn-sm float-end ms-2" onclick="return confirm('Are you sure you want to delete this file?');">Delete</a>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% block block %}
+<div id="main" class="main">
+    <h1 class="mb-4">Create Folder</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-secondary">Create</button>
+    </form>
+</div>
+{% endblock block %}

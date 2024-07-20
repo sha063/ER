@@ -1,0 +1,14 @@
+<div id="main" class="main">
+  {% include "../components/pagetitle.html" %}
+  {{ form.media }}
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{form.as_p}}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'Home' %}" class="btn btn-info btn-block">Cancel</a>
+  </form>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+</div>
